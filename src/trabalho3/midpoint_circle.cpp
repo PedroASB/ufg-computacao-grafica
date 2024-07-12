@@ -3,18 +3,22 @@
 // g++ midpoint_circle.cpp -I"../../include/freeglut/include" -L"../../include/freeglut/lib" -lfreeglut -lopengl32 -lglu32 -o ./out/midpoint_circle
 // ./out/midpoint_circle
 
+// Ponto com coordenadas (x,y)
 typedef struct point {
     GLint x, y;
 } Point;
 
-
+// Desenha um pixel na posição (x,y)
 void draw_pixel(GLint x, GLint y) {
     glBegin(GL_POINTS);
     glVertex2i(x, y);
     glEnd();
 }
 
+// Plota o ponto em cada octante
 void plot_circle_points(GLint xc, GLint yc, Point circle_point) {
+    // (xc, yc) são as coordenadas do centro da circunferência
+    // Os pontos serão plotados nas posições (x,y) (-x,y) (x,-y) (-x,-y) (y,x) (-y,x) (y,-x) (-y,-x)
     draw_pixel(xc + circle_point.x, yc + circle_point.y);
     draw_pixel(xc - circle_point.x, yc + circle_point.y);
     draw_pixel(xc + circle_point.x, yc - circle_point.y);
@@ -31,7 +35,7 @@ void midpoint_circle(GLint xc, GLint yc, GLint radius) {
     GLint d = 1 - radius;                // Variável de decisão (radius inteiro)
     // GLfloat d = 5/4 - radius;         // Variável de decisão (radius real)
 
-    // Plota o ponto inicial de cada quadrante
+    // Plota o ponto inicial em cada octante
     plot_circle_points(xc, yc, point);
 
     // Calcula o próximo ponto e plota em cada octante
