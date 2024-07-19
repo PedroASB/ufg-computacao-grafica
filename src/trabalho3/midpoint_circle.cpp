@@ -42,7 +42,7 @@ void midpoint_circle(GLint xc, GLint yc, GLint radius) {
     while (point.x < point.y) {
         if (d < 0) // Seleciona o ponto LESTE
             d += 2 * point.x + 3;
-        else { // Seleciona o ponto SUDOESTE
+        else { // Seleciona o ponto SUDESTE
             d += 2 * (point.x - point.y) + 5;
             point.y--;
         }
@@ -54,7 +54,7 @@ void midpoint_circle(GLint xc, GLint yc, GLint radius) {
 void display() {
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3f(1.0, 0.0, 0.0);
-    midpoint_circle(0, 0, 520);
+    midpoint_circle(0, 0, 500);
     glutSwapBuffers();
 }
 
